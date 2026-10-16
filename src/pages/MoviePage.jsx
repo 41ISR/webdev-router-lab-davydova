@@ -1,8 +1,12 @@
-import { getMovieById } from '../data/movies.js';
+import { useNavigate, useParams } from "react-router-dom"
+import { labelForGenre, movies } from '../data/movies.js'
+
 
 export default function MoviePage() {
-  const id = 'inception';
-  const movie = getMovieById(id);
+  const { id } = useParams()
+  const navigate = useNavigate()
+  
+  const movie = movies.find(el => el.id === id)
 
   if (!movie) {
     return <div className="inline-error">Фильм не найден.</div>;
